@@ -1,11 +1,11 @@
 package com.example.spring_phoneshop.service.Impl;
 
-import com.example.spring_backend_ecommerce.entity.OrderDetail;
-import com.example.spring_backend_ecommerce.exception.NotFoundException;
-import com.example.spring_backend_ecommerce.model.dto.OrderDetailDTO;
-import com.example.spring_backend_ecommerce.model.mapper.OrderDetailMapper;
-import com.example.spring_backend_ecommerce.repository.OrderdetailRepository;
-import com.example.spring_backend_ecommerce.service.OrderDetailService;
+import com.example.spring_phoneshop.entity.OrderDetail;
+import com.example.spring_phoneshop.exception.NotFoundException;
+import com.example.spring_phoneshop.dto.OrderDetailDTO;
+import com.example.spring_phoneshop.mapper.OrderDetailMapper;
+import com.example.spring_phoneshop.repository.OrderDetailRepository;
+import com.example.spring_phoneshop.service.OrderDetailService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class OrderDetailServiceImpl implements OrderDetailService {
 
-    private final OrderdetailRepository orderdetailRepository;
+    private final OrderDetailRepository orderdetailRepository;
     private final OrderDetailMapper orderdetailMapper;
-    public OrderDetailServiceImpl(OrderdetailRepository orderdetailRepository, OrderDetailMapper orderdetailMapper) {
+    public OrderDetailServiceImpl(OrderDetailRepository orderdetailRepository, OrderDetailMapper orderdetailMapper) {
         this.orderdetailRepository = orderdetailRepository;
         this.orderdetailMapper = orderdetailMapper;
     }

@@ -1,11 +1,11 @@
 package com.example.spring_phoneshop.service.Impl;
 
-import com.example.spring_backend_ecommerce.entity.Review;
-import com.example.spring_backend_ecommerce.exception.NotFoundException;
-import com.example.spring_backend_ecommerce.model.dto.ReviewDTO;
-import com.example.spring_backend_ecommerce.model.mapper.ReviewMapper;
-import com.example.spring_backend_ecommerce.repository.ReviewRepository;
-import com.example.spring_backend_ecommerce.service.ReviewService;
+import com.example.spring_phoneshop.entity.Review;
+import com.example.spring_phoneshop.exception.NotFoundException;
+import com.example.spring_phoneshop.dto.ReviewDTO;
+import com.example.spring_phoneshop.mapper.ReviewMapper;
+import com.example.spring_phoneshop.repository.ReviewRepository;
+import com.example.spring_phoneshop.service.ReviewService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

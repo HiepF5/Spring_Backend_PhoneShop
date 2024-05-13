@@ -1,30 +1,44 @@
 package com.example.spring_phoneshop.restcontroller;
 
-import com.example.spring_backend_ecommerce.entity.Category;
-import com.example.spring_backend_ecommerce.model.dto.CategoryDTO;
-import com.example.spring_backend_ecommerce.service.CategoryService;
+import com.example.spring_phoneshop.dto.CategoryDTO;
+import com.example.spring_phoneshop.service.CategoryService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class CategoryRestController {
     @Autowired
     private CategoryService categoryService;
-
     @GetMapping("/category")
-    public List<CategoryDTO> getAllCategory(){
-        return categoryService.getAllCategory();
+    public ResponseEntity<List<CategoryDTO>> getAllCategory(){
+        List<CategoryDTO> categoryDTOS = categoryService.getAllCategory();
+        return ResponseEntity.ok(categoryDTOS);
     }
     @GetMapping("/category/{id}")
-    public Optional<CategoryDTO> getCategoryById(@PathVariable Integer id){return categoryService.getCategoryById(id);}
+    public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable("id") Integer categoryId){
+        CategoryDTO categoryDTO = categoryService.getCategoryById(categoryId);
+        return ResponseEntity.ok(categoryDTO);
+    }
     @PostMapping("/category")
-    public void addCategory(@RequestBody Category category){categoryService.addCategory(category);}
-    @PutMapping ("/category")
-    public void updateCategory(@RequestBody Category category){categoryService.updateCategory(category);}
+    public ResponseEntity<CategoryDTO> addCategory(@RequestBody CategoryDTO categoryDTO) {
+        CategoryDTO saveCategory = categoryService.addCategory(categoryDTO);
+        return new ResponseEntity<>(saveCategory, HttpStatus.CREATED);
+    }
+    @PutMapping("/category/{id}")
+    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable("id") Integer categoryId,
+                                                      @RequestBody CategoryDTO updateCategory){
+        CategoryDTO categoryDTO = categoryService.updateCategory(categoryId, updateCategory);
+        return ResponseEntity.ok(categoryDTO);
+    }
     @DeleteMapping("/category/{id}")
-    public void deleteCategory(@PathVariable Integer id){categoryService.deleteCategory(id);}
+    public ResponseEntity<String> deleteCategory(@PathVariable("id") Integer categoryId) {
+        categoryService.deleteCategory(categoryId);
+        return ResponseEntity.ok("Product deleted successfully!");
+    }
 }

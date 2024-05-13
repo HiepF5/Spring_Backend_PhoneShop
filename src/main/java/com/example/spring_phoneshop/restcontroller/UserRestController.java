@@ -1,9 +1,12 @@
 package com.example.spring_phoneshop.restcontroller;
 
-import com.example.spring_backend_ecommerce.entity.User;
-import com.example.spring_backend_ecommerce.model.dto.UserDTO;
-import com.example.spring_backend_ecommerce.service.UserService;
+import com.example.spring_phoneshop.dto.OrdersDTO;
+import com.example.spring_phoneshop.dto.Top5UserOrder;
+import com.example.spring_phoneshop.entity.User;
+import com.example.spring_phoneshop.dto.UserDTO;
+import com.example.spring_phoneshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,4 +29,9 @@ public class UserRestController {
     public void updateUser(@RequestBody User user){userService.updateUser(user);}
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable Integer id){userService.deleteUser(id);}
+    @GetMapping("/user/top5count")
+    public List<Top5UserOrder> findTopFiveUsersByOrderCount(){
+       return userService.findTopFiveUsersByOrderCount();
+    }
+
 }

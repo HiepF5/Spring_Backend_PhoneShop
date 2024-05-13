@@ -1,4 +1,5 @@
 package com.example.spring_phoneshop.entity;
 
-public class Customer {
+public class Customer extends User{
+    private Integer salary;
 }

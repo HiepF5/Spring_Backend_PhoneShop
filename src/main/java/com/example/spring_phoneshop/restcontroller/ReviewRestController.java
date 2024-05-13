@@ -1,8 +1,8 @@
 package com.example.spring_phoneshop.restcontroller;
 
-import com.example.spring_backend_ecommerce.entity.Review;
-import com.example.spring_backend_ecommerce.model.dto.ReviewDTO;
-import com.example.spring_backend_ecommerce.service.ReviewService;
+import com.example.spring_phoneshop.entity.Review;
+import com.example.spring_phoneshop.dto.ReviewDTO;
+import com.example.spring_phoneshop.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

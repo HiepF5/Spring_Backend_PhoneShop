@@ -1,8 +1,8 @@
 package com.example.spring_phoneshop.restcontroller;
 
-import com.example.spring_backend_ecommerce.entity.OrderDetail;
-import com.example.spring_backend_ecommerce.model.dto.OrderDetailDTO;
-import com.example.spring_backend_ecommerce.service.OrderDetailService;
+import com.example.spring_phoneshop.entity.OrderDetail;
+import com.example.spring_phoneshop.dto.OrderDetailDTO;
+import com.example.spring_phoneshop.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

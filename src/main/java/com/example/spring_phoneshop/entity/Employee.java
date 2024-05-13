@@ -1,4 +1,5 @@
 package com.example.spring_phoneshop.entity;
 
-public class Employee {
+public class Employee extends User{
+    private Integer Id;
 }

@@ -1,11 +1,14 @@
 package com.example.spring_phoneshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -27,14 +30,14 @@ public class Orders {
     private String phoneNumber;
     @Column(name = "username", nullable = false)
     private String username;
-
-//    @OneToMany(mappedBy = "orders")
-//    private Set<OrderDetail> orderDetails;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", referencedColumnName ="userId")
-//    private User user;
-
-
+    @Column(name = "total", nullable = false)
+    private Integer total;
+    @OneToMany(mappedBy = "orders")
+    @JsonManagedReference
+    private Set<OrderDetail> orderDetails;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName ="userId")
+    @JsonBackReference
+    private User user;
 
 }

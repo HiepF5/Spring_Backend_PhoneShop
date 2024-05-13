@@ -1,7 +1,7 @@
 package com.example.spring_phoneshop.service;
 
-import com.example.spring_backend_ecommerce.entity.Review;
-import com.example.spring_backend_ecommerce.model.dto.ReviewDTO;
+import com.example.spring_phoneshop.entity.Review;
+import com.example.spring_phoneshop.dto.ReviewDTO;
 
 import java.util.List;
 import java.util.Optional;

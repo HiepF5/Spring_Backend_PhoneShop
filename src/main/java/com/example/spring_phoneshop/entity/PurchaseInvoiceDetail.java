@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class PurchaseInvoiceDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderdetailId", nullable = false, unique = true)
-    private Integer orderdetailId;
+    @Column(name = "purchaseInvoiceDetailId", nullable = false, unique = true)
+    private Integer purchaseInvoiceDetailId;
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
     @Column(name = "status", nullable = false)
@@ -22,14 +22,10 @@ public class PurchaseInvoiceDetail {
     private Integer price;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", referencedColumnName ="cartId")
-    private Cart cart;
-
-    @ManyToOne
     @JoinColumn(name = "products_id", referencedColumnName ="productsId")
     private Products products;
 
     @ManyToOne
-    @JoinColumn(name = "orders_id", referencedColumnName ="ordersId")
-    private Orders orders;
+    @JoinColumn(name = "purchaseInvoice_id", referencedColumnName ="purchaseInvoiceId")
+    private PurchaseInvoice purchaseInvoice;
 }

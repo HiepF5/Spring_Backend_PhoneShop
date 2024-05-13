@@ -1,32 +1,30 @@
 package com.example.spring_phoneshop.service.Impl;
 
-import com.example.spring_backend_ecommerce.entity.User;
-import com.example.spring_backend_ecommerce.exception.NotFoundException;
-import com.example.spring_backend_ecommerce.model.dto.UserDTO;
-import com.example.spring_backend_ecommerce.model.mapper.UserMapper;
-import com.example.spring_backend_ecommerce.repository.UserRepository;
-import com.example.spring_backend_ecommerce.service.UserService;
+
+import com.example.spring_phoneshop.dto.Top5UserOrder;
+import com.example.spring_phoneshop.entity.User;
+import com.example.spring_phoneshop.exception.NotFoundException;
+import com.example.spring_phoneshop.dto.UserDTO;
+import com.example.spring_phoneshop.mapper.UserMapper;
+import com.example.spring_phoneshop.repository.UserRepository;
+import com.example.spring_phoneshop.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
 
     @Override
     public List<UserDTO> getAllUser() {
         List<User> userList = userRepository.findAll();
 
-        List<UserDTO> userDTOList = userList.stream().map(element -> userMapper.touserDTO(element)).collect(Collectors.toList());
+        List<UserDTO> userDTOList = userList.stream().map(element -> userMapper.mapToUserDTO(element)).collect(Collectors.toList());
 
         return userDTOList;
     }
@@ -36,7 +34,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Không tìm thấy User với ID: " + id));
 
-        UserDTO userDTO = userMapper.touserDTO(user);
+        UserDTO userDTO = userMapper.mapToUserDTO(user);
         return Optional.of(userDTO);
     }
 
@@ -54,4 +52,13 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public List<Top5UserOrder> findTopFiveUsersByOrderCount() {
+        return userRepository.findTopFiveUsersByOrderCount();
+    }
+
+
+
+
 }

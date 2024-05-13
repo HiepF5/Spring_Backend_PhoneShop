@@ -1,29 +1,47 @@
 package com.example.spring_phoneshop.restcontroller;
 
-import com.example.spring_backend_ecommerce.entity.Cart;
-import com.example.spring_backend_ecommerce.model.dto.CartDTO;
-import com.example.spring_backend_ecommerce.service.CartService;
+
+import com.example.spring_phoneshop.dto.CartDTO;
+import com.example.spring_phoneshop.service.CartService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class CartRestController {
     @Autowired
     private CartService cartService;
     @GetMapping("/cart")
-    public List<CartDTO> getAllCart(){
-        return cartService.getAllCart();
+    public ResponseEntity<List<CartDTO>> getAllCart(){
+        List<CartDTO> cartDTOS = cartService.getAllCart();
+        return ResponseEntity.ok(cartDTOS);
     }
     @GetMapping("/cart/{id}")
-    public Optional<CartDTO> getCartById(@PathVariable Integer id){return cartService.getCartById(id);}
+    public ResponseEntity<CartDTO> getCartById(@PathVariable("id") Integer cartId){
+        CartDTO cartDTO = cartService.getCartById(cartId);
+        return ResponseEntity.ok(cartDTO);
+    }
     @PostMapping("/cart")
-    public void addCart(@RequestBody Cart cart){cartService.addCart(cart);}
-    @PutMapping ("/cart")
-    public void updateCart(@RequestBody Cart cart){cartService.updateCart(cart);}
+    public ResponseEntity<CartDTO> addCart(@RequestBody CartDTO cartDTO) {
+        CartDTO saveCart = cartService.addCart(cartDTO);
+        return new ResponseEntity<>(saveCart, HttpStatus.CREATED);
+    }
+    @PutMapping("/cart/{id}")
+    public ResponseEntity<CartDTO> updateCart(@PathVariable("id") Integer cartId,
+                                                      @RequestBody CartDTO updateCart){
+        CartDTO cartDTO = cartService.updateCart(cartId, updateCart);
+        return ResponseEntity.ok(cartDTO);
+    }
     @DeleteMapping("/cart/{id}")
-    public void deleteCart(@PathVariable Integer id){cartService.deleteCart(id);}
+    public ResponseEntity<String> deleteCart(@PathVariable("id") Integer cartId) {
+        cartService.deleteCart(cartId);
+        return ResponseEntity.ok("Product deleted successfully!");
+    }
 }

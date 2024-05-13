@@ -1,8 +1,8 @@
 package com.example.spring_phoneshop.mapper;
 
-import com.example.spring_backend_ecommerce.entity.Cart;
-import com.example.spring_backend_ecommerce.entity.Review;
-import com.example.spring_backend_ecommerce.model.dto.ReviewDTO;
+
+import com.example.spring_phoneshop.dto.ReviewDTO;
+import com.example.spring_phoneshop.entity.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.modelmapper.ModelMapper;

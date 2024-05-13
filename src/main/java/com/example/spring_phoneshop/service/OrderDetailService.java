@@ -1,7 +1,7 @@
 package com.example.spring_phoneshop.service;
 
-import com.example.spring_backend_ecommerce.entity.OrderDetail;
-import com.example.spring_backend_ecommerce.model.dto.OrderDetailDTO;
+import com.example.spring_phoneshop.entity.OrderDetail;
+import com.example.spring_phoneshop.dto.OrderDetailDTO;
 
 import java.util.List;
 import java.util.Optional;

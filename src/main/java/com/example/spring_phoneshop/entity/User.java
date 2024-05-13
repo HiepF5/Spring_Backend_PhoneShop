@@ -1,10 +1,14 @@
 package com.example.spring_phoneshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Set;
 
@@ -37,17 +41,26 @@ public class User {
     @Column(name = "password",nullable = false)
     private String password;
 
-    /*@OneToOne(mappedBy = "user")
-    private Cart cart;
+//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+//    @JsonManagedReference
+//    private Cart cart;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "roleId"))
     @JsonIgnore
+    @JsonBackReference
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<Orders> orders;
 
     @OneToMany(mappedBy = "user")
-    private Set<Review> reviews;*/
+    @JsonManagedReference
+    private Set<PurchaseInvoice> purchaseInvoice;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<Review> reviews;
+
 }

@@ -1,19 +1,18 @@
 package com.example.spring_phoneshop.service;
 
-import com.example.spring_backend_ecommerce.entity.Category;
-import com.example.spring_backend_ecommerce.model.dto.CategoryDTO;
+
+import com.example.spring_phoneshop.dto.CategoryDTO;
+import com.example.spring_phoneshop.dto.ProductsDTO;
+import com.example.spring_phoneshop.entity.Category;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CategoryService {
     List<CategoryDTO> getAllCategory();
+    CategoryDTO getCategoryById(Integer id);
 
-    Optional<CategoryDTO>getCategoryById(Integer id);
+    CategoryDTO addCategory(CategoryDTO categoryDTO);
 
-    void addCategory(Category category);
-
-    void updateCategory(Category category);
-
-    void deleteCategory(Integer id);
+    CategoryDTO updateCategory(Integer categoryId, CategoryDTO updateCategory);
+    void deleteCategory(Integer categoryId);
 }
