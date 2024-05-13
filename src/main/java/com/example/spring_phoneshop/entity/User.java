@@ -2,6 +2,7 @@ package com.example.spring_phoneshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "user")
+@JsonIgnoreProperties("orders")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +53,8 @@ public class User {
     @JsonBackReference
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Orders> orders;
 
     @OneToMany(mappedBy = "user")

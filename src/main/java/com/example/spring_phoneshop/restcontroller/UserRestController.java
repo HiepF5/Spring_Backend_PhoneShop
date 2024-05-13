@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
@@ -32,6 +32,10 @@ public class UserRestController {
     @GetMapping("/user/top5count")
     public List<Top5UserOrder> findTopFiveUsersByOrderCount(){
        return userService.findTopFiveUsersByOrderCount();
+    }
+    @GetMapping("user/total")
+    public long getTotalUsers() {
+        return userService.getTotalUsers();
     }
 
 }

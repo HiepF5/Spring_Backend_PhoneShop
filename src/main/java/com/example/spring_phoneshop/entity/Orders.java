@@ -1,6 +1,7 @@
 package com.example.spring_phoneshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,9 +36,9 @@ public class Orders {
     @OneToMany(mappedBy = "orders")
     @JsonManagedReference
     private Set<OrderDetail> orderDetails;
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName ="userId")
-    @JsonBackReference
+    @JsonIgnore
     private User user;
 
 }

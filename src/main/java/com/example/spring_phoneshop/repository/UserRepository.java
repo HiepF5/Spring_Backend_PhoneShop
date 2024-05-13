@@ -18,5 +18,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "ORDER BY SUM(o.total) DESC " +
             "LIMIT 5")
     List<Top5UserOrder> findTopFiveUsersByOrderCount();
-
+    long count();
 }

@@ -20,6 +20,7 @@ public interface UserService {
     void deleteUser(Integer id);
 
     List<Top5UserOrder> findTopFiveUsersByOrderCount();
+    long getTotalUsers();
 
 }
 

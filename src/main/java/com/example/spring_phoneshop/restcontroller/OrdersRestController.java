@@ -50,4 +50,25 @@ public class OrdersRestController {
     public void checkout(@RequestBody List<CheckoutOrder> checkoutOrder, @RequestParam("user_id") Integer userId) {
         ordersService.checkout(checkoutOrder, userId);
     }
+    @GetMapping("/orders/byMonth")
+    public List<Orders> getOrdersByMonth(@RequestParam("month") int month) {
+        return ordersService.findOrdersByMonth(month);
+    }
+//    @GetMapping("/user/{userId}")
+//    public List<Orders> getOrdersByUserId(@PathVariable Integer userId) {
+//        return ordersService.findOrdersByUserId(userId);
+//    }
+    @GetMapping("orders/count")
+    public ResponseEntity<Integer> countAllOrders() {
+        int totalCount = ordersService.countAllOrders();
+        return new ResponseEntity<>(totalCount, HttpStatus.OK);
+    }
+    @GetMapping("orders/totalAmount")
+    public int getTotalOrderAmount() {
+        return ordersService.getTotalOrderAmount();
+    }
+    @GetMapping("orders/month-with-most-orders")
+    public int getMonthWithMostOrders() {
+        return ordersService.getMonthWithMostOrders();
+    }
 }

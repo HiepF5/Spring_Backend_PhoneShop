@@ -58,7 +58,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findTopFiveUsersByOrderCount();
     }
 
-
+    @Override
+    public long getTotalUsers() {
+        return userRepository.count();
+    }
 
 
 }
