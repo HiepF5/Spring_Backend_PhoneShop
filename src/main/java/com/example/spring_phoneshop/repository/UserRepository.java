@@ -19,4 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "LIMIT 5")
     List<Top5UserOrder> findTopFiveUsersByOrderCount();
     long count();
+    Boolean existsByUsername(String username);
+    Optional<User> findByUsername(String username);
+    Boolean existsByEmail(String email);
 }
