@@ -6,6 +6,7 @@ import com.example.spring_phoneshop.dto.OrderDetailDTO;
 import com.example.spring_phoneshop.mapper.OrderDetailMapper;
 import com.example.spring_phoneshop.repository.OrderDetailRepository;
 import com.example.spring_phoneshop.service.OrderDetailService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +14,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
+
 public class OrderDetailServiceImpl implements OrderDetailService {
 
     private final OrderDetailRepository orderdetailRepository;
     private final OrderDetailMapper orderdetailMapper;
-    public OrderDetailServiceImpl(OrderDetailRepository orderdetailRepository, OrderDetailMapper orderdetailMapper) {
-        this.orderdetailRepository = orderdetailRepository;
-        this.orderdetailMapper = orderdetailMapper;
-    }
+
 
     @Override
     public List<OrderDetailDTO> getAllOrderDetail() {
@@ -53,5 +53,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
     public void deleteOrderDetailDTO(Integer id) {
         orderdetailRepository.deleteById(id);
+    }
+    @Override
+    public List<Object[]> getTotalQuantityForEachProduct() {
+        return orderdetailRepository.findTotalQuantityForEachProduct();
     }
 }

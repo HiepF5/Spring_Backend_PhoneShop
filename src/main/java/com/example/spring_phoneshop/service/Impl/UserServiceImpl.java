@@ -2,6 +2,7 @@ package com.example.spring_phoneshop.service.Impl;
 
 
 import com.example.spring_phoneshop.dto.Top5UserOrder;
+import com.example.spring_phoneshop.entity.Products;
 import com.example.spring_phoneshop.entity.User;
 import com.example.spring_phoneshop.exception.NotFoundException;
 import com.example.spring_phoneshop.dto.UserDTO;
@@ -61,6 +62,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public long getTotalUsers() {
         return userRepository.count();
+    }
+    @Override
+    public List<Products> findMostPurchasedProductsByUserId(int userId) {
+        return userRepository.findMostPurchasedProductsByUserId(userId);
     }
 
 

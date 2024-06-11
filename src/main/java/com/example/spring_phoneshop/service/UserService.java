@@ -2,6 +2,7 @@ package com.example.spring_phoneshop.service;
 
 import com.example.spring_phoneshop.dto.OrdersDTO;
 import com.example.spring_phoneshop.dto.Top5UserOrder;
+import com.example.spring_phoneshop.entity.Products;
 import com.example.spring_phoneshop.entity.User;
 import com.example.spring_phoneshop.dto.UserDTO;
 
@@ -21,6 +22,7 @@ public interface UserService {
 
     List<Top5UserOrder> findTopFiveUsersByOrderCount();
     long getTotalUsers();
+    List<Products> findMostPurchasedProductsByUserId(int userId);
 
 }
 

@@ -14,4 +14,5 @@ public interface OrderDetailService {
     void addOrderDetail(OrderDetail orderdetail);
     void updateOrderDetail(OrderDetail orderdetail);
     void deleteOrderDetailDTO(Integer id);
+    List<Object[]> getTotalQuantityForEachProduct();
 }

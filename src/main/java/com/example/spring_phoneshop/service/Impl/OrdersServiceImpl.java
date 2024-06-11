@@ -95,6 +95,7 @@ public class OrdersServiceImpl implements OrdersService {
             orderDetail.setPrice(products.getPrice());
             orderDetailRepository.save(orderDetail);
             products.setQuantity(products.getQuantity() - checkoutOrder1.getQuantity());
+            products.setSold(products.getSold() + checkoutOrder1.getQuantity());
             productsRepository.save(products);
         }
         orders.setTotal(sum);

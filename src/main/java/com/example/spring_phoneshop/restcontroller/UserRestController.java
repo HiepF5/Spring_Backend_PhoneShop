@@ -2,6 +2,7 @@ package com.example.spring_phoneshop.restcontroller;
 
 import com.example.spring_phoneshop.dto.OrdersDTO;
 import com.example.spring_phoneshop.dto.Top5UserOrder;
+import com.example.spring_phoneshop.entity.Products;
 import com.example.spring_phoneshop.entity.User;
 import com.example.spring_phoneshop.dto.UserDTO;
 import com.example.spring_phoneshop.service.UserService;
@@ -36,6 +37,10 @@ public class UserRestController {
     @GetMapping("user/total")
     public long getTotalUsers() {
         return userService.getTotalUsers();
+    }
+    @GetMapping("/users/{userId}/mostPurchasedProducts")
+    public List<Products> getMostPurchasedProductsByUserId(@PathVariable int userId) {
+        return userService.findMostPurchasedProductsByUserId(userId);
     }
 
 }
